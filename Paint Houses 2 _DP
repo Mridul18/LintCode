@@ -1,0 +1,59 @@
+//Problem Link-https://www.lintcode.com/problem/paint-house-ii/description
+public class Solution {
+    /**
+     * @param costs: n x k cost matrix
+     * @return: an integer, the minimum cost to paint all houses
+     */
+    public int minCostII(int[][] costs) {
+        // write your code here
+        int n=costs.size();
+        if(n==0)
+        return 0;
+        int m=cost[0].size();
+        
+        int dp[n][m];
+        int minimum=INT_MAX,s_minimum=INT_MAX;
+        for(int i=0;i<m;i++)
+        {
+            dp[0][m]=costs[0][m];
+            
+            if(cost[0][m]<minimum){
+                minimum=cost[0][m];
+                s_minimum=minimum;
+                continue;
+            }
+            
+            if(cost[0][m]<s_minimum){
+                s_minimum=cost[0][m]
+            }  
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=m;j++){
+                if(costs[i][j]==minimum)
+                dp[i][j]=s_minimum+costs[i][j];
+                
+                else
+                dp[i][j]=minimum+costs[i][j];
+            }
+            minimum=s_minimum=INT_MAX;
+            for(int k=0;k<m;k++){
+                if(costs[i][k]<minimum){
+                    minimum=costs[i][k];
+                    s_minimum=minimum;
+                    continue;
+                }
+                
+                if(costs[i][k]<s_minimum){
+                    s_minimum=costs[i][k];
+                }
+                
+            }
+        }
+        int answer=INT_MAX;
+        for(int i=0;i<m;i++){
+            answer=min(answer,costs[n-1][i])
+        } 
+        return answer;  
+    }
+}
